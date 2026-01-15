@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poster Mockup Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Poster Mockup Generator</h1>
+            <p>Create professional mockups for your posters</p>
+        </header>
+
+        <main>
+            <!-- Step 1: Upload Image -->
+            <section id="upload-section" class="section active">
+                <h2>Step 1: Upload Your Poster</h2>
+                <div class="upload-area" id="upload-area">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
+                    <p>Drop your poster images here or click to browse</p>
+                    <p class="file-info">Supports JPG and PNG files (multiple allowed)</p>
+                    <input type="file" id="file-input" accept="image/jpeg,image/png" multiple hidden>
+                </div>
+                <div id="image-preview" class="image-preview hidden">
+                    <div id="preview-grid" class="preview-grid"></div>
+                    <div class="image-info">
+                        <p><strong>Images uploaded:</strong> <span id="image-count"></span></p>
+                        <p><strong>Dimensions:</strong> <span id="image-dimensions"></span></p>
+                    </div>
+                    <div class="button-row">
+                        <button class="btn btn-secondary" id="upload-more">Upload More</button>
+                        <button class="btn btn-primary" id="continue-to-mockups">Continue to Mockups</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Step 2: Select Mockups -->
+            <section id="mockup-section" class="section hidden">
+                <h2>Step 2: Select Mockup Templates</h2>
+                <div class="mockup-notice">
+                    <p>Note: Place mockup images in size folders: <code>mockups/8x10/</code>, <code>mockups/11x14/</code>, <code>mockups/18x24/</code>. Each mockup should have pure magenta (#FF00FF) corner markers where the poster will appear. Uploaded posters will automatically match mockups of the same size.</p>
+                </div>
+                <div id="mockup-grid" class="mockup-grid">
+                    <!-- Mockups will be loaded here -->
+                </div>
+                <div class="selected-info">
+                    <p><span id="selected-count">0</span> mockup(s) selected</p>
+                </div>
+                <button class="btn btn-primary" id="continue-to-generate" disabled>Continue to Generate</button>
+            </section>
+
+            <!-- Step 3: Generate Mockups -->
+            <section id="generate-section" class="section hidden">
+                <h2>Step 3: Generate & Download</h2>
+                <div class="output-settings">
+                    <div class="setting-group">
+                        <label for="dimension-type">Resize by:</label>
+                        <select id="dimension-type">
+                            <option value="width">Width</option>
+                            <option value="height">Height</option>
+                        </select>
+                    </div>
+                    <div class="setting-group">
+                        <label for="output-size">Size (px):</label>
+                        <input type="number" id="output-size" value="2000" min="100" max="10000" step="100">
+                    </div>
+                </div>
+                <button class="btn btn-primary btn-large" id="generate-btn">Generate Mockups</button>
+
+                <div id="progress-section" class="progress-section hidden">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                    <p id="progress-text">Processing...</p>
+                </div>
+
+                <div id="results-section" class="results-section hidden">
+                    <h3>Generated Mockups</h3>
+                    <div id="results-grid" class="results-grid"></div>
+                    <div class="results-actions">
+                        <button class="btn btn-primary" id="download-all">Download All as ZIP</button>
+                        <button class="btn btn-secondary" id="start-over">Create Another Mockup</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

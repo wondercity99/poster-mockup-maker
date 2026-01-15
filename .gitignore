@@ -1,0 +1,20 @@
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Editor directories and files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Vercel
+.vercel
+
+# Logs
+*.log
+
+# Optional: Ignore mockup images if they're large
+# mockups/*.jpg
+# mockups/*.png
