@@ -153,8 +153,16 @@ function detectPosterSize(width, height) {
     let minDifference = Infinity;
 
     STANDARD_SIZES.forEach(size => {
-        const standardRatio = size.width / size.height;
-        const difference = Math.abs(aspectRatio - standardRatio);
+        // Check portrait orientation (e.g., 18x24)
+        const portraitRatio = size.width / size.height;
+        const portraitDiff = Math.abs(aspectRatio - portraitRatio);
+
+        // Check landscape orientation (e.g., 24x18)
+        const landscapeRatio = size.height / size.width;
+        const landscapeDiff = Math.abs(aspectRatio - landscapeRatio);
+
+        // Use whichever orientation is closer
+        const difference = Math.min(portraitDiff, landscapeDiff);
 
         if (difference < minDifference) {
             minDifference = difference;
